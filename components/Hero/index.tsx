@@ -1,55 +1,84 @@
+"use client";
+
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ArrowRight, CheckCircle2, Star, ShieldCheck, Zap, Users, Building, FileCheck } from "lucide-react";
 import { Card } from "@/components/ui/Card";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden pt-4 md:pt-8 pb-10 lg:pt-10 lg:pb-16 bg-[url('/hero-bg.jpg')] bg-cover bg-center">
+    <section id="home" className="relative overflow-hidden pt-4 md:pt-8 pb-10 lg:pt-10 lg:pb-16 bg-[url('/hero-bg.jpg')] bg-cover bg-top">
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
 
           {/* Left Content */}
-          <div className="max-w-2xl bg-white/85 backdrop-blur-md p-8 sm:p-10 rounded-[2rem] shadow-xl border border-white/50">
-            <Badge variant="default" className="mb-6 font-medium text-slate-700 gap-1.5 py-1 px-3 bg-white/60 border-white/40 backdrop-blur-md hover:bg-white/80 shadow-sm">
-              <Zap size={14} className="text-[#4E8F52]" />
-              Trusted UK Payroll & Recruitment
-            </Badge>
+          <div className="max-w-2xl bg-white p-8 sm:p-10 shadow-[0_20px_40px_-10px_rgba(15,23,42,0.18)]">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <Badge variant="default" className="mb-6 font-medium text-[#166534] gap-1.5 py-1 px-3 bg-[#ECFDF5] border-none shadow-sm hover:bg-[#ECFDF5]/80">
+                <Zap size={14} className="text-[#4E8F52]" />
+                Trusted UK Payroll & Recruitment
+              </Badge>
+            </motion.div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-normal text-[#4E8F52] tracking-tight leading-[1.1] mb-6 animate-fade-up drop-shadow-sm">
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-5xl font-normal text-[#0F172A] tracking-tight leading-[1.1] mb-6"
+            >
               Recruiting Accountancy, <br />
               Finance, and Admin <br />
               Professionals in the UK
-            </h1>
+            </motion.h1>
 
-            <p className="text-lg text-slate-700 mb-8 max-w-lg leading-relaxed font-medium">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-lg text-[#475569] mb-8 max-w-lg leading-relaxed font-medium"
+            >
               Rimaya Ltd delivers HMRC-compliant payroll, expert recruitment across finance and operations, and strategic consulting — everything a growing UK business needs, from one dedicated partner.
-            </p>
+            </motion.p>
 
-            <div className="hidden flex-wrap gap-4 mb-12">
-              <Button size="lg" className="gap-2 group">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="hidden flex-wrap gap-4 mb-12"
+            >
+              <Button size="lg" className="gap-2 group bg-[#4E8F52] hover:bg-[#3E7743] text-white border-none">
                 Hire Talent <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button variant="outline" size="lg" className="rounded-full bg-white/10 text-white border-white/20 hover:bg-white/20 hover:text-white">
+              <Button variant="outline" size="lg" className="rounded-full bg-white text-[#0F172A] border-slate-200 hover:bg-slate-50">
                 Find Jobs
               </Button>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-wrap items-center gap-6 text-sm font-normal text-slate-800 drop-shadow-sm">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex flex-wrap items-center gap-6 text-sm font-normal text-[#475569]"
+            >
               <div className="flex items-center gap-2">
-                <CheckCircle2 size={18} className="text-emerald-500" />
+                <CheckCircle2 size={18} className="text-[#10B981]" />
                 <span>HMRC compliant</span>
               </div>
               <div className="flex items-center gap-2">
-                <ShieldCheck size={18} className="text-emerald-500" />
+                <ShieldCheck size={18} className="text-[#059669]" />
                 <span>ICO registered</span>
               </div>
               <div className="flex items-center gap-2">
-                <Star size={18} className="text-cyan-500 fill-cyan-500" />
+                <Star size={18} className="text-[#F59E0B] fill-[#F59E0B]" />
                 <span>4.9/5 client rating</span>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Dashboard Mockup */}
@@ -87,7 +116,7 @@ export default function Hero() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-4 mb-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
                 <div className="bg-slate-50 p-4 rounded-2xl">
                   <p className="text-xs font-medium text-slate-500 mb-1">Employees</p>
                   <p className="font-normal text-slate-900">142</p>

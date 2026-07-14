@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/Card";
-import { Star, User, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, User, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
 
@@ -131,15 +131,15 @@ export default function Testimonials() {
   ];
 
   return (
-    <section id="testimonials" className="py-16 overflow-hidden">
+    <section id="testimonials" className="py-8 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <p className="text-sm font-normal tracking-widest text-blue-600 uppercase mb-4">
+        <div className="w-full flex flex-col items-center justify-center text-center mb-16">
+          <p className="text-base font-normal tracking-widest text-blue-600 uppercase mb-2 pr-2">
             Testimonials
           </p>
-          <h2 className="text-4xl md:text-5xl font-normal text-slate-900 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-normal text-slate-900 tracking-tight pr-2">
             What Our Clients Say
           </h2>
         </div>
@@ -169,47 +169,50 @@ export default function Testimonials() {
             className="flex overflow-x-auto gap-6 snap-x snap-mandatory pb-12 pt-8 px-4 -mx-4 hide-scrollbar"
           >
             {testimonials.map((item, i) => (
-              <div key={i} className="relative min-w-[320px] max-w-[320px] md:min-w-[360px] md:max-w-[360px] snap-center shrink-0">
-                <Card className="h-full pt-14 pb-8 px-8 rounded-2xl border-slate-100 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center bg-white">
+              <div key={i} className="relative min-w-[280px] max-w-[280px] sm:min-w-[320px] sm:max-w-[320px] md:min-w-[360px] md:max-w-[360px] snap-center shrink-0 my-4">
+                <div className="group h-full p-8 rounded-none border border-slate-200 bg-white hover:border-slate-300 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col text-left relative z-0 overflow-hidden">
+                  
+                  {/* Animated Left Accent Line */}
+                  <div className="absolute top-0 left-0 w-1 h-full bg-blue-600 transform origin-bottom scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-out"></div>
 
-                  {/* Avatar (Floating) */}
-                  <div className="absolute -top-8 left-1/2 -translate-x-1/2">
-                    {item.type === "initial" ? (
-                      <div className={`w-20 h-20 rounded-full ${item.bg} text-white flex items-center justify-center text-3xl font-normal shadow-sm`}>
-                        {item.initial}
-                      </div>
-                    ) : (
-                      <div className="w-20 h-20 rounded-full bg-slate-300 flex items-center justify-center shadow-sm overflow-hidden border-2 border-white">
-                        <User size={48} className="text-white translate-y-3" fill="currentColor" />
-                      </div>
-                    )}
-                  </div>
+                  {/* Decorative Quote */}
+                  <Quote size={80} className="absolute -top-4 -right-4 text-slate-50 opacity-50 -z-10 rotate-12 group-hover:text-blue-50 transition-colors duration-500" />
 
                   {/* Stars */}
-                  <div className="flex gap-1 mb-2">
+                  <div className="flex gap-1 mb-6">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <div key={star} className="bg-[#00b67a] p-[3px] rounded-sm">
-                        <Star size={16} className="text-white fill-white" />
+                      <div key={star} className="bg-[#00b67a] p-[3px] rounded-none">
+                        <Star size={14} className="text-white fill-white" />
                       </div>
                     ))}
                   </div>
 
-                  {/* Date */}
-                  <p className="text-xs text-slate-400 mb-6 font-medium">
-                    {item.date}
-                  </p>
-
                   {/* Title */}
-                  <h3 className="font-normal text-slate-900 text-lg mb-3">
-                    {item.title}
-                  </h3>
+                  <h3 className="text-xl font-semibold text-slate-900 mb-4 pr-10">{item.title}</h3>
 
                   {/* Quote */}
-                  <p className="text-slate-600 leading-relaxed text-sm">
-                    {item.quote}
+                  <p className="text-[15px] text-slate-600 leading-relaxed flex-grow">
+                    "{item.quote}"
                   </p>
 
-                </Card>
+                  {/* Footer (Avatar + Info) */}
+                  <div className="flex items-center gap-4 mt-8 pt-6 border-t border-slate-100">
+                    {item.type === "initial" ? (
+                      <div className={`w-12 h-12 rounded-none ${item.bg} text-white flex items-center justify-center font-semibold text-lg`}>
+                        {item.initial}
+                      </div>
+                    ) : (
+                      <div className="w-12 h-12 rounded-none bg-blue-50 flex items-center justify-center text-blue-300">
+                        <User size={24} fill="currentColor" />
+                      </div>
+                    )}
+                    <div>
+                      <p className="font-semibold text-slate-900 text-sm">Verified Client</p>
+                      <p className="text-xs text-slate-500 mt-1 uppercase tracking-wide">{item.date}</p>
+                    </div>
+                  </div>
+
+                </div>
               </div>
             ))}
           </div>

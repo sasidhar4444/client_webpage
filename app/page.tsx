@@ -1,5 +1,4 @@
 import Navbar from "@/components/Navbar";
-import WelcomeSection from "@/components/WelcomeSection";
 import DelayedFadeIn from "@/components/DelayedFadeIn";
 import Hero from "@/components/Hero";
 import TrustedCompanies from "@/components/TrustedCompanies";
@@ -24,7 +23,6 @@ export default function Home() {
           <Hero />
         </DelayedFadeIn>
         <DelayedFadeIn>
-          <WelcomeSection />
           <TrustedCompanies />
           <Services />
           <PayrollSection />

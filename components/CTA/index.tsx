@@ -1,38 +1,60 @@
+"use client";
+
 import { Button } from "@/components/ui/Button";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function CTA() {
   return (
-    <section id="contact" className="py-8 bg-white">
+    <section id="contact" className="py-8 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        <div className="relative rounded-[2.5rem] overflow-hidden bg-slate-900 text-white py-20 px-6 text-center">
-          {/* Background Elements */}
-          <div className="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] bg-white opacity-10 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-normal mb-6 tracking-tight">
-              Ready to grow your business or career?
-            </h2>
-            <p className="text-lg md:text-xl text-slate-300 mb-10">
-              Whether you're hiring, job hunting, or scaling operations — let's talk.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button size="lg" className="!bg-white !text-slate-900 hover:!bg-slate-100 rounded-full font-semibold">
-                Hire Talent
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                className="!bg-transparent !text-white !border-white/20 hover:!bg-white/10 hover:!text-white rounded-full font-semibold"
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="relative rounded-[2.5rem] overflow-hidden min-h-[500px] lg:min-h-[600px] text-left"
+        >
+          {/* Background Image & Overlays */}
+          <div className="absolute inset-0 bg-[url('/grow.png')] bg-cover bg-[-3px_center] lg:bg-[center_15%]" />
+          <div className="absolute inset-0 bg-slate-900/10" />
+          {/* Buttons Positioned Next to Text */}
+          <div className="absolute bottom-12 lg:bottom-[4.5rem] left-6 lg:left-[28%] z-10 w-[200px] px-6 sm:px-0">
+            <div className="flex flex-col gap-4 justify-start">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.4, ease: "easeOut" }}
               >
-                Browse Jobs
-              </Button>
+                <Link href="/employer-hiring" className="w-full block">
+                  <Button size="lg" className="w-full !bg-white !text-slate-900 hover:!bg-slate-100 rounded-full font-semibold shadow-lg">
+                    Hire Talent
+                  </Button>
+                </Link>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.9, delay: 0.7, ease: "easeOut" }}
+              >
+                <Link href="/#jobs" className="w-full block">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="w-full !bg-slate-900/40 backdrop-blur-md !text-white !border-white/20 hover:!bg-slate-900/60 hover:!text-white rounded-full font-semibold shadow-lg"
+                  >
+                    Search jobs
+                  </Button>
+                </Link>
+              </motion.div>
             </div>
           </div>
+        </motion.div>
         </div>
-
-      </div>
     </section>
   );
 }

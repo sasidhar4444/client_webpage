@@ -39,7 +39,7 @@ export default function FAQ() {
 
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="text-sm font-normal tracking-widest text-blue-600 uppercase mb-4">
+          <p className="text-base font-normal tracking-widest text-blue-600 uppercase mb-4">
             FAQ
           </p>
           <h2 className="text-4xl font-normal text-slate-900 tracking-tight">
@@ -54,7 +54,7 @@ export default function FAQ() {
             return (
               <div
                 key={i}
-                className={`border rounded-2xl overflow-hidden transition-colors ${isOpen ? "border-slate-300 bg-slate-50" : "border-slate-100 bg-white hover:border-slate-200"
+                className={`border rounded-none overflow-hidden transition-all duration-300 border-l-4 ${isOpen ? "border-slate-200 border-l-blue-600 bg-slate-50" : "border-slate-100 border-l-transparent bg-white hover:border-slate-200"
                   }`}
               >
                 <button

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-
+import WhatsAppButton from "@/components/WhatsAppButton";
+import ScrollToTop from "@/components/ScrollToTop";
 const roboto = Roboto({
   weight: ['400', '500', '700', '900'],
   variable: "--font-roboto",
@@ -20,8 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${roboto.variable} antialiased scroll-smooth`}>
-      <body className="min-h-screen flex flex-col font-sans">
+      <body className="min-h-screen flex flex-col font-sans overflow-x-hidden">
         {children}
+        <ScrollToTop />
+        <WhatsAppButton />
       </body>
     </html>
   );

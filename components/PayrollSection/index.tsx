@@ -16,12 +16,12 @@ export default function PayrollSection() {
 
           {/* Top Content */}
           <div className="lg:col-span-5">
-            <p className="text-sm font-normal tracking-widest text-blue-600 uppercase mb-4">
+            <p className="text-base font-normal tracking-widest text-blue-600 uppercase mb-4">
               Payroll Solutions
             </p>
 
             <h2 className="text-4xl md:text-5xl font-normal text-slate-900 mb-6 tracking-tight leading-[1.15]">
-              Payroll that runs itself — and stays HMRC-compliant.
+              Payroll that runs itself and stays HMRC compliant.
             </h2>
 
             <p className="text-lg text-slate-500 mb-10 leading-relaxed">
@@ -53,7 +53,7 @@ export default function PayrollSection() {
           <div className="lg:col-span-7 flex justify-end w-full">
             <div className="relative w-full max-w-lg lg:ml-auto">
 
-              <Card className="p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border-slate-100/60 bg-white/95 backdrop-blur-sm rounded-[2rem]">
+              <Card className="p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-slate-100/60 border-t-4 border-t-[#a3b18a] bg-white/95 backdrop-blur-sm rounded-none">
 
                 <div className="flex items-center justify-between mb-8">
                   <div>
@@ -65,13 +65,13 @@ export default function PayrollSection() {
                   </Badge>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4 mb-10">
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1, duration: 0.5 }}
-                    className="bg-white border border-slate-100 shadow-sm p-5 rounded-2xl"
+                    className="bg-white border border-slate-100 border-l-2 border-l-[#a3b18a] shadow-sm p-5 rounded-none"
                   >
                     <p className="text-sm font-medium text-slate-500 mb-2">Gross</p>
                     <p className="font-normal text-xl text-slate-900">£312,880</p>
@@ -81,7 +81,7 @@ export default function PayrollSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2, duration: 0.5 }}
-                    className="bg-white border border-slate-100 shadow-sm p-5 rounded-2xl"
+                    className="bg-white border border-slate-100 border-l-2 border-l-[#a3b18a] shadow-sm p-5 rounded-none"
                   >
                     <p className="text-sm font-medium text-slate-500 mb-2">Net</p>
                     <p className="font-normal text-xl text-slate-900">£248,930</p>
@@ -91,7 +91,7 @@ export default function PayrollSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3, duration: 0.5 }}
-                    className="bg-white border border-slate-100 shadow-sm p-5 rounded-2xl"
+                    className="bg-white border border-slate-100 shadow-sm p-5 rounded-none"
                   >
                     <p className="text-sm font-medium text-slate-500 mb-2">Deductions</p>
                     <p className="font-normal text-xl text-slate-900">£63,950</p>
@@ -100,18 +100,106 @@ export default function PayrollSection() {
 
                 <div>
                   <p className="text-sm font-medium text-slate-500 mb-6">Payroll trend</p>
-                  <div className="h-32 flex items-end justify-between gap-2">
-                    {bars.map((height, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ height: 0, opacity: 0 }}
-                        whileInView={{ height: `${height}%`, opacity: 0.9 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.4 + (i * 0.05), ease: "easeOut" }}
-                        whileHover={{ opacity: 1 }}
-                        className="w-full bg-gradient-to-t from-blue-600 to-cyan-400 rounded-t-md cursor-pointer"
-                      />
-                    ))}
+                  <div className="h-32 w-full relative">
+                    {(() => {
+                      const max = 100;
+                      const width = 1000;
+                      const height = 200;
+                      const points = bars.map((val, i) => ({
+                        x: (i / (bars.length - 1)) * width,
+                        y: height - (val / max) * height
+                      }));
+
+                      let pathD = `M ${points[0].x},${points[0].y}`;
+                      for (let i = 0; i < points.length - 1; i++) {
+                        const curr = points[i];
+                        const next = points[i + 1];
+                        const cp1x = curr.x + (next.x - curr.x) / 2;
+                        const cp1y = curr.y;
+                        const cp2x = curr.x + (next.x - curr.x) / 2;
+                        const cp2y = next.y;
+                        pathD += ` C ${cp1x},${cp1y} ${cp2x},${cp2y} ${next.x},${next.y}`;
+                      }
+                      const areaD = `${pathD} L ${width},${height} L 0,${height} Z`;
+
+                      return (
+                        <svg viewBox="0 -40 1000 260" className="w-full h-full overflow-visible">
+                          <defs>
+                            <linearGradient id="trendGradient" x1="0" x2="0" y1="0" y2="1">
+                              <stop offset="0%" stopColor="#4E8F52" stopOpacity="0.3" />
+                              <stop offset="100%" stopColor="#4E8F52" stopOpacity="0" />
+                            </linearGradient>
+                          </defs>
+
+                          {/* Grid Lines */}
+                          {[0, 50, 100, 150, 200].map((y, i) => (
+                            <line key={i} x1="0" y1={y} x2="1000" y2={y} stroke="#f8fafc" strokeWidth="2" />
+                          ))}
+
+                          <motion.path
+                            d={areaD}
+                            fill="url(#trendGradient)"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, delay: 0.2 }}
+                          />
+                          <motion.path
+                            d={pathD}
+                            fill="none"
+                            stroke="#4E8F52"
+                            strokeWidth="4"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            initial={{ pathLength: 0 }}
+                            whileInView={{ pathLength: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.5, ease: "easeOut" }}
+                          />
+
+                          {/* Data Points */}
+                          {points.map((p, i) => (
+                            <motion.circle
+                              key={i}
+                              cx={p.x}
+                              cy={p.y}
+                              r="4"
+                              fill="#ffffff"
+                              stroke="#4E8F52"
+                              strokeWidth="3"
+                              initial={{ opacity: 0, scale: 0 }}
+                              whileInView={{ opacity: 1, scale: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 1 + (i * 0.05), duration: 0.3 }}
+                            />
+                          ))}
+
+                          {/* Data Labels (Peaks only) */}
+                          {points.map((p, i) => {
+                            const isPeak = i > 0 && bars[i] > bars[i - 1] && (i === bars.length - 1 || bars[i] > bars[i + 1]);
+                            if (!isPeak) return null;
+                            const valK = Math.floor(bars[i] * 3.1288);
+                            return (
+                              <motion.text
+                                key={`text-${i}`}
+                                x={i === points.length - 1 ? p.x - 5 : p.x}
+                                y={p.y - 20}
+                                fill="#64748b"
+                                fontSize="22"
+                                fontWeight="600"
+                                textAnchor={i === points.length - 1 ? "end" : "middle"}
+                                initial={{ opacity: 0, y: p.y - 10 }}
+                                whileInView={{ opacity: 1, y: p.y - 20 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 1.2 + (i * 0.05), duration: 0.3 }}
+                              >
+                                £{valK}k
+                              </motion.text>
+                            );
+                          })}
+                        </svg>
+                      );
+                    })()}
                   </div>
                 </div>
 

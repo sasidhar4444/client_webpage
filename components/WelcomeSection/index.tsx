@@ -5,7 +5,7 @@ import DelayedFadeIn from "@/components/DelayedFadeIn";
 
 export default function WelcomeSection() {
   return (
-    <section className="py-16 md:py-20 relative overflow-hidden">
+    <section className="py-8 md:py-12 relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <motion.h2
           initial={{ opacity: 0 }}

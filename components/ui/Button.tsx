@@ -13,7 +13,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     let baseStyles = "inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50"
     
     let variants = {
-      primary: "bg-slate-900 text-white hover:bg-slate-800 shadow-sm",
+      primary: "bg-[lab(36_30.43_-81.2_/_0.91)] text-white hover:opacity-90 transition-opacity shadow-sm",
       outline: "border border-slate-200 bg-white hover:bg-slate-100 text-slate-900",
       ghost: "hover:bg-slate-100 hover:text-slate-900 text-slate-600",
     }

@@ -7,6 +7,12 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function EmployerHiring() {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert("Thank you for your hiring request. A specialized recruiter will contact you within 24 hours.");
+    (e.target as HTMLFormElement).reset();
+  };
+
   const benefits = [
     {
       title: "Pre-vetted Network",
@@ -97,7 +103,7 @@ export default function EmployerHiring() {
       <section className="py-24 bg-white border-y border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row gap-16 items-start">
-            <div className="lg:w-1/3 sticky top-32">
+            <div className="lg:w-1/3 lg:sticky lg:top-32 z-20 bg-white/90 lg:bg-transparent py-4 lg:py-0">
               <h2 className="text-3xl md:text-4xl font-normal text-slate-900 mb-6 tracking-tight">
                 Our proven recruitment methodology
               </h2>
@@ -143,7 +149,7 @@ export default function EmployerHiring() {
               </p>
             </div>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-900">Company Name</label>
@@ -176,7 +182,7 @@ export default function EmployerHiring() {
                 <textarea rows={4} className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors" placeholder="Any specific requirements, timelines, or context..."></textarea>
               </div>
 
-              <Button type="button" className="w-full bg-slate-900 hover:bg-blue-600 text-white rounded-none py-6 text-lg transition-colors mt-4">
+              <Button type="submit" className="w-full bg-slate-900 hover:bg-blue-600 text-white rounded-none py-6 text-lg transition-colors mt-4">
                 Submit Hiring Request
               </Button>
             </form>

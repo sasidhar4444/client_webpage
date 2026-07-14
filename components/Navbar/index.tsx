@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
@@ -31,11 +32,15 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center h-full">
             {/* Logo */}
-            <Link href="/" className="flex-shrink-0 flex items-center gap-2 mr-6">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-900 to-blue-500 shadow-sm flex items-center justify-center text-white font-normal text-lg">
-                R
-              </div>
-              <span className="font-normal text-xl text-slate-900 tracking-tight">Rimaya</span>
+            <Link href="/" onClick={(e) => handleScroll(e, undefined, '/')} className="flex-shrink-0 flex items-center mr-6">
+              <Image 
+                src="/logo.png" 
+                alt="Rimaya Recruitment" 
+                width={160} 
+                height={50} 
+                className="h-10 w-auto object-contain"
+                priority 
+              />
             </Link>
 
             {/* Desktop Navigation */}

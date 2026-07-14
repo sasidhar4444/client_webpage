@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Mail, Phone, Navigation } from "lucide-react";
 
 export default function Footer() {
@@ -9,11 +10,14 @@ export default function Footer() {
 
           {/* Brand Info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-normal text-lg">
-                R
-              </div>
-              <span className="font-normal text-xl text-white tracking-tight">Rimaya Ltd</span>
+            <div className="flex items-center mb-6">
+              <Image 
+                src="/logo.png" 
+                alt="Rimaya Recruitment" 
+                width={240} 
+                height={80} 
+                className="h-24 w-auto object-contain"
+              />
             </div>
 
             <p className="text-sm leading-relaxed mb-8 max-w-sm">

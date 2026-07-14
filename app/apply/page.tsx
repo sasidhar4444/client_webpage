@@ -4,16 +4,33 @@ import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/Button";
-import { UploadCloud, CheckCircle2 } from "lucide-react";
+import { UploadCloud, CheckCircle2, Loader2 } from "lucide-react";
 import Link from "next/link";
 
 export default function ApplyPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // In a real app, send formData to API
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.currentTarget);
+    
+    try {
+      await fetch("/", {
+        method: "POST",
+        // Do not set Content-Type header when sending FormData with files; 
+        // the browser will automatically set it to multipart/form-data with the correct boundary.
+        body: formData,
+      });
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -35,11 +52,20 @@ export default function ApplyPage() {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form 
+                  name="application" 
+                  method="POST" 
+                  data-netlify="true" 
+                  onSubmit={handleSubmit} 
+                  className="space-y-6"
+                >
+                  <input type="hidden" name="form-name" value="application" />
+                  
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label htmlFor="firstName" className="block text-sm font-semibold text-slate-900 mb-2">First Name</label>
                       <input 
+                        name="firstName"
                         type="text" 
                         id="firstName" 
                         required
@@ -50,6 +76,7 @@ export default function ApplyPage() {
                     <div>
                       <label htmlFor="lastName" className="block text-sm font-semibold text-slate-900 mb-2">Last Name</label>
                       <input 
+                        name="lastName"
                         type="text" 
                         id="lastName" 
                         required
@@ -63,6 +90,7 @@ export default function ApplyPage() {
                     <div>
                       <label htmlFor="email" className="block text-sm font-semibold text-slate-900 mb-2">Email Address</label>
                       <input 
+                        name="email"
                         type="email" 
                         id="email" 
                         required
@@ -73,6 +101,7 @@ export default function ApplyPage() {
                     <div>
                       <label htmlFor="phone" className="block text-sm font-semibold text-slate-900 mb-2">Phone Number</label>
                       <input 
+                        name="phone"
                         type="tel" 
                         id="phone" 
                         required
@@ -85,6 +114,7 @@ export default function ApplyPage() {
                   <div>
                     <label htmlFor="role" className="block text-sm font-semibold text-slate-900 mb-2">Target Role / Industry</label>
                     <select 
+                      name="role"
                       id="role" 
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#a3b18a]/50 focus:border-[#a3b18a] transition-all bg-slate-50 focus:bg-white text-slate-700"
                     >
@@ -99,6 +129,7 @@ export default function ApplyPage() {
                   <div>
                     <label htmlFor="coverLetter" className="block text-sm font-semibold text-slate-900 mb-2">Cover Letter / Message</label>
                     <textarea 
+                      name="coverLetter"
                       id="coverLetter" 
                       rows={4}
                       className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#a3b18a]/50 focus:border-[#a3b18a] transition-all bg-slate-50 focus:bg-white resize-none"
@@ -108,13 +139,12 @@ export default function ApplyPage() {
 
                   <div>
                     <label className="block text-sm font-semibold text-slate-900 mb-2">Upload CV</label>
-                    <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-slate-300 border-dashed rounded-xl hover:bg-slate-50 hover:border-[#a3b18a] transition-colors cursor-pointer group">
-                      <div className="space-y-2 text-center">
+                    <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-slate-300 border-dashed rounded-xl hover:bg-slate-50 hover:border-[#a3b18a] transition-colors cursor-pointer group relative">
+                      <div className="space-y-2 text-center relative z-10 pointer-events-none">
                         <UploadCloud className="mx-auto h-12 w-12 text-slate-400 group-hover:text-[#a3b18a] transition-colors" />
                         <div className="flex text-sm text-slate-600 justify-center">
                           <label htmlFor="file-upload" className="relative cursor-pointer rounded-md font-medium text-[#a3b18a] focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[#a3b18a]">
                             <span>Upload a file</span>
-                            <input id="file-upload" name="file-upload" type="file" className="sr-only" required accept=".pdf,.doc,.docx" />
                           </label>
                           <p className="pl-1">or drag and drop</p>
                         </div>
@@ -122,12 +152,27 @@ export default function ApplyPage() {
                           PDF, DOC, DOCX up to 10MB
                         </p>
                       </div>
+                      <input 
+                        id="file-upload" 
+                        name="cv-upload" 
+                        type="file" 
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20" 
+                        required 
+                        accept=".pdf,.doc,.docx" 
+                      />
                     </div>
                   </div>
 
                   <div className="pt-4">
-                    <Button type="submit" size="lg" className="w-full bg-[#a3b18a] hover:bg-[#8f9d77] text-white">
-                      Submit Application
+                    <Button type="submit" size="lg" disabled={isSubmitting} className="w-full bg-[#a3b18a] hover:bg-[#8f9d77] text-white disabled:opacity-70 disabled:cursor-not-allowed">
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        "Submit Application"
+                      )}
                     </Button>
                   </div>
                 </form>

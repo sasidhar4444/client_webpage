@@ -1,11 +1,38 @@
 "use client";
 
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function ContactPage() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.currentTarget);
+    
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        // @ts-ignore
+        body: new URLSearchParams(formData).toString(),
+      });
+      setIsSuccess(true);
+      (e.target as HTMLFormElement).reset();
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -71,56 +98,85 @@ export default function ContactPage() {
             >
               <div className="bg-white rounded-none p-8 lg:p-12 border border-slate-200 shadow-xl relative">
                 <div className="absolute top-0 left-0 w-full h-1 bg-blue-600"></div>
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-semibold text-slate-800 mb-2">Full name <span className="text-blue-600">*</span></label>
-                      <input type="text" className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-slate-900 text-sm" />
+                
+                {isSuccess ? (
+                  <div className="flex flex-col items-center justify-center py-12 text-center animate-fade-in">
+                    <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-6">
+                      <CheckCircle2 size={32} />
                     </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-slate-800 mb-2">Company</label>
-                      <input type="text" className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-slate-900 text-sm" />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-semibold text-slate-800 mb-2">Work email <span className="text-blue-600">*</span></label>
-                      <input type="email" className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-slate-900 text-sm" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-slate-800 mb-2">Phone</label>
-                      <input type="tel" className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-slate-900 text-sm" />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-800 mb-2">I'm interested in</label>
-                    <div className="relative">
-                      <select className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all appearance-none text-slate-900 text-sm">
-                        <option>Payroll solutions</option>
-                        <option>Recruitment services</option>
-                        <option>Consulting</option>
-                        <option>Other</option>
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
-                        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-semibold text-slate-800 mb-2">Message</label>
-                    <textarea rows={4} className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all resize-none text-slate-900 text-sm placeholder:text-slate-400" placeholder="Tell us a little about your business or the role you're looking for."></textarea>
-                  </div>
-
-                  <div className="pt-2">
-                    <button type="button" className="bg-[#0f172a] text-white px-8 py-3.5 rounded-none font-medium hover:bg-blue-600 transition-colors duration-300 flex items-center justify-center gap-2 text-sm w-full sm:w-auto shadow-md">
-                      Send message
-                      <Send size={16} className="ml-1" />
+                    <h3 className="text-2xl font-semibold text-slate-900 mb-2">Message Sent!</h3>
+                    <p className="text-slate-500">Thank you for reaching out. We will get back to you within one working day.</p>
+                    <button 
+                      onClick={() => setIsSuccess(false)}
+                      className="mt-8 text-blue-600 font-medium hover:underline"
+                    >
+                      Send another message
                     </button>
                   </div>
-                </form>
+                ) : (
+                  <form 
+                    name="contact" 
+                    method="POST" 
+                    data-netlify="true" 
+                    onSubmit={handleSubmit}
+                    className="space-y-6"
+                  >
+                    <input type="hidden" name="form-name" value="contact" />
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-800 mb-2">Full name <span className="text-blue-600">*</span></label>
+                        <input name="name" required type="text" className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-slate-900 text-sm" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-800 mb-2">Company</label>
+                        <input name="company" type="text" className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-slate-900 text-sm" />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-800 mb-2">Work email <span className="text-blue-600">*</span></label>
+                        <input name="email" required type="email" className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-slate-900 text-sm" />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-slate-800 mb-2">Phone</label>
+                        <input name="phone" type="tel" className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all text-slate-900 text-sm" />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-slate-800 mb-2">I'm interested in</label>
+                      <div className="relative">
+                        <select name="interest" className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all appearance-none text-slate-900 text-sm">
+                          <option>Payroll solutions</option>
+                          <option>Recruitment services</option>
+                          <option>Consulting</option>
+                          <option>Other</option>
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+                          <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-slate-800 mb-2">Message</label>
+                      <textarea name="message" rows={4} className="w-full px-4 py-3 rounded-none border border-slate-300 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all resize-none text-slate-900 text-sm placeholder:text-slate-400" placeholder="Tell us a little about your business or the role you're looking for."></textarea>
+                    </div>
+
+                    <div className="pt-2">
+                      <button 
+                        type="submit" 
+                        disabled={isSubmitting}
+                        className="bg-[#0f172a] text-white px-8 py-3.5 rounded-none font-medium hover:bg-blue-600 transition-colors duration-300 flex items-center justify-center gap-2 text-sm w-full sm:w-auto shadow-md disabled:opacity-70 disabled:cursor-not-allowed"
+                      >
+                        {isSubmitting ? "Sending..." : "Send message"}
+                        {!isSubmitting && <Send size={16} className="ml-1" />}
+                      </button>
+                    </div>
+                  </form>
+                )}
               </div>
             </motion.div>
           </div>

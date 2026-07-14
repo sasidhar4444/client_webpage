@@ -55,7 +55,6 @@ export default function ApplyPage() {
                 <form 
                   name="application" 
                   method="POST" 
-                  data-netlify="true" 
                   onSubmit={handleSubmit} 
                   className="space-y-6"
                 >

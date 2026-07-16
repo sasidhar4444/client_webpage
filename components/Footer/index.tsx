@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center mb-6">
               <Image 
-                src="/Rimaya_logo.png" 
+                src="/FINAL_LOGO.png" 
                 alt="Rimaya Recruitment" 
                 width={280} 
                 height={96} 

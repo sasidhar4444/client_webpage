@@ -68,7 +68,7 @@ export default function ApplyPage() {
                         type="text" 
                         id="firstName" 
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#a3b18a]/50 focus:border-[#a3b18a] transition-all bg-slate-50 focus:bg-white"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[lab(36_30.43_-81.2_/_0.91)]/50 focus:border-[lab(36_30.43_-81.2_/_0.91)] transition-all bg-slate-50 focus:bg-white"
                         placeholder="Jane"
                       />
                     </div>
@@ -79,7 +79,7 @@ export default function ApplyPage() {
                         type="text" 
                         id="lastName" 
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#a3b18a]/50 focus:border-[#a3b18a] transition-all bg-slate-50 focus:bg-white"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[lab(36_30.43_-81.2_/_0.91)]/50 focus:border-[lab(36_30.43_-81.2_/_0.91)] transition-all bg-slate-50 focus:bg-white"
                         placeholder="Doe"
                       />
                     </div>
@@ -93,7 +93,7 @@ export default function ApplyPage() {
                         type="email" 
                         id="email" 
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#a3b18a]/50 focus:border-[#a3b18a] transition-all bg-slate-50 focus:bg-white"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[lab(36_30.43_-81.2_/_0.91)]/50 focus:border-[lab(36_30.43_-81.2_/_0.91)] transition-all bg-slate-50 focus:bg-white"
                         placeholder="jane@example.com"
                       />
                     </div>
@@ -104,7 +104,7 @@ export default function ApplyPage() {
                         type="tel" 
                         id="phone" 
                         required
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#a3b18a]/50 focus:border-[#a3b18a] transition-all bg-slate-50 focus:bg-white"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[lab(36_30.43_-81.2_/_0.91)]/50 focus:border-[lab(36_30.43_-81.2_/_0.91)] transition-all bg-slate-50 focus:bg-white"
                         placeholder="+44 7700 900077"
                       />
                     </div>
@@ -115,7 +115,7 @@ export default function ApplyPage() {
                     <select 
                       name="role"
                       id="role" 
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#a3b18a]/50 focus:border-[#a3b18a] transition-all bg-slate-50 focus:bg-white text-slate-700"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[lab(36_30.43_-81.2_/_0.91)]/50 focus:border-[lab(36_30.43_-81.2_/_0.91)] transition-all bg-slate-50 focus:bg-white text-slate-700"
                     >
                       <option>Finance & Accounting</option>
                       <option>Payroll</option>
@@ -131,18 +131,18 @@ export default function ApplyPage() {
                       name="coverLetter"
                       id="coverLetter" 
                       rows={4}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#a3b18a]/50 focus:border-[#a3b18a] transition-all bg-slate-50 focus:bg-white resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[lab(36_30.43_-81.2_/_0.91)]/50 focus:border-[lab(36_30.43_-81.2_/_0.91)] transition-all bg-slate-50 focus:bg-white resize-none"
                       placeholder="Tell us a bit about your experience..."
                     />
                   </div>
 
                   <div>
                     <label className="block text-sm font-semibold text-slate-900 mb-2">Upload CV</label>
-                    <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-slate-300 border-dashed rounded-xl hover:bg-slate-50 hover:border-[#a3b18a] transition-colors cursor-pointer group relative">
+                    <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-slate-300 border-dashed rounded-xl hover:bg-slate-50 hover:border-[lab(36_30.43_-81.2_/_0.91)] transition-colors cursor-pointer group relative">
                       <div className="space-y-2 text-center relative z-10 pointer-events-none">
-                        <UploadCloud className="mx-auto h-12 w-12 text-slate-400 group-hover:text-[#a3b18a] transition-colors" />
+                        <UploadCloud className="mx-auto h-12 w-12 text-slate-400 group-hover:text-[lab(36_30.43_-81.2_/_0.91)] transition-colors" />
                         <div className="flex text-sm text-slate-600 justify-center">
-                          <label htmlFor="file-upload" className="relative cursor-pointer rounded-md font-medium text-[#a3b18a] focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[#a3b18a]">
+                          <label htmlFor="file-upload" className="relative cursor-pointer rounded-md font-medium text-[lab(36_30.43_-81.2_/_0.91)] focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[lab(36_30.43_-81.2_/_0.91)]">
                             <span>Upload a file</span>
                           </label>
                           <p className="pl-1">or drag and drop</p>
@@ -163,7 +163,7 @@ export default function ApplyPage() {
                   </div>
 
                   <div className="pt-4">
-                    <Button type="submit" size="lg" disabled={isSubmitting} className="w-full bg-[#a3b18a] hover:bg-[#8f9d77] text-white disabled:opacity-70 disabled:cursor-not-allowed">
+                    <Button type="submit" size="lg" disabled={isSubmitting} className="w-full bg-[lab(36_30.43_-81.2_/_0.91)] hover:opacity-90 text-white disabled:opacity-70 disabled:cursor-not-allowed">
                       {isSubmitting ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -178,8 +178,8 @@ export default function ApplyPage() {
               </>
             ) : (
               <div className="text-center py-16">
-                <div className="w-20 h-20 bg-[#a3b18a]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle2 size={40} className="text-[#a3b18a]" />
+                <div className="w-20 h-20 bg-[lab(36_30.43_-81.2_/_0.91)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <CheckCircle2 size={40} className="text-[lab(36_30.43_-81.2_/_0.91)]" />
                 </div>
                 <h2 className="text-3xl font-normal text-slate-900 mb-4">Application Submitted!</h2>
                 <p className="text-lg text-slate-500 mb-8 max-w-md mx-auto">

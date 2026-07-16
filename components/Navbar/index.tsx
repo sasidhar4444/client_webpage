@@ -29,16 +29,16 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full bg-white border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24">
+        <div className="flex justify-between items-center h-16">
           <div className="flex items-center h-full">
             {/* Logo */}
             <Link href="/" onClick={(e) => handleScroll(e, undefined, '/')} className="flex-shrink-0 flex items-center mr-6">
               <Image 
                 src="/Rimaya_logo.png" 
                 alt="Rimaya Recruitment" 
-                width={240} 
-                height={80} 
-                className="h-20 w-auto object-contain"
+                width={180} 
+                height={56} 
+                className="h-12 w-auto object-contain md:h-14"
                 priority 
               />
             </Link>

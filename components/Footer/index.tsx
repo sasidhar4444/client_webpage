@@ -14,9 +14,9 @@ export default function Footer() {
               <Image 
                 src="/Rimaya_logo.png" 
                 alt="Rimaya Recruitment" 
-                width={240} 
-                height={80} 
-                className="h-24 w-auto object-contain scale-110 origin-left"
+                width={280} 
+                height={96} 
+                className="h-28 md:h-32 w-auto object-contain"
               />
             </div>
 

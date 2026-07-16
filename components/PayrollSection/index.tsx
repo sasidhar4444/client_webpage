@@ -38,7 +38,7 @@ export default function PayrollSection() {
                 "Cloud-based dashboard"
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 text-slate-700 font-medium text-sm">
-                  <CheckCircle2 size={18} className="text-[#a3b18a] shrink-0" />
+                  <CheckCircle2 size={18} className="text-[lab(36_30.43_-81.2_/_0.91)] shrink-0" />
                   <span>{item}</span>
                 </div>
               ))}
@@ -53,7 +53,7 @@ export default function PayrollSection() {
           <div className="lg:col-span-7 flex justify-end w-full">
             <div className="relative w-full max-w-lg lg:ml-auto">
 
-              <Card className="p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-slate-100/60 border-t-4 border-t-[#a3b18a] bg-white/95 backdrop-blur-sm rounded-none">
+              <Card className="p-8 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] border border-slate-100/60 border-t-4 border-t-[lab(36_30.43_-81.2_/_0.91)] bg-white/95 backdrop-blur-sm rounded-none">
 
                 <div className="flex items-center justify-between mb-8">
                   <div>
@@ -71,7 +71,7 @@ export default function PayrollSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1, duration: 0.5 }}
-                    className="bg-white border border-slate-100 border-l-2 border-l-[#a3b18a] shadow-sm p-5 rounded-none"
+                    className="bg-white border border-slate-100 border-l-2 border-l-[lab(36_30.43_-81.2_/_0.91)] shadow-sm p-5 rounded-none"
                   >
                     <p className="text-sm font-medium text-slate-500 mb-2">Gross</p>
                     <p className="font-normal text-xl text-slate-900">£312,880</p>
@@ -81,7 +81,7 @@ export default function PayrollSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.2, duration: 0.5 }}
-                    className="bg-white border border-slate-100 border-l-2 border-l-[#a3b18a] shadow-sm p-5 rounded-none"
+                    className="bg-white border border-slate-100 border-l-2 border-l-[lab(36_30.43_-81.2_/_0.91)] shadow-sm p-5 rounded-none"
                   >
                     <p className="text-sm font-medium text-slate-500 mb-2">Net</p>
                     <p className="font-normal text-xl text-slate-900">£248,930</p>

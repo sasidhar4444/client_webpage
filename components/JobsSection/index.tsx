@@ -46,8 +46,8 @@ export default function JobsSection() {
             <div className="grid sm:grid-cols-2 gap-4 mb-10">
               <Link href="/upload-cv" className="block">
                 <div className="flex items-center gap-4 p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                  <div className="w-11 h-11 rounded-xl bg-[#a3b18a]/10 flex items-center justify-center shrink-0">
-                    <UploadCloud size={20} className="text-[#a3b18a]" />
+                  <div className="w-11 h-11 rounded-xl bg-[lab(36_30.43_-81.2_/_0.91)]/10 flex items-center justify-center shrink-0">
+                    <UploadCloud size={20} className="text-[lab(36_30.43_-81.2_/_0.91)]" />
                   </div>
                   <span className="font-semibold text-slate-900 text-sm">Upload your CV</span>
                 </div>
@@ -55,8 +55,8 @@ export default function JobsSection() {
 
               <Link href="/jobs" className="block">
                 <div className="flex items-center gap-4 p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                  <div className="w-11 h-11 rounded-xl bg-[#a3b18a]/10 flex items-center justify-center shrink-0">
-                    <Search size={20} className="text-[#a3b18a]" />
+                  <div className="w-11 h-11 rounded-xl bg-[lab(36_30.43_-81.2_/_0.91)]/10 flex items-center justify-center shrink-0">
+                    <Search size={20} className="text-[lab(36_30.43_-81.2_/_0.91)]" />
                   </div>
                   <span className="font-semibold text-slate-900 text-sm">Search live jobs</span>
                 </div>
@@ -64,8 +64,8 @@ export default function JobsSection() {
 
               <Link href="/employer-hiring" className="block">
                 <div className="flex items-center gap-4 p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                  <div className="w-11 h-11 rounded-xl bg-[#a3b18a]/10 flex items-center justify-center shrink-0">
-                    <Building size={20} className="text-[#a3b18a]" />
+                  <div className="w-11 h-11 rounded-xl bg-[lab(36_30.43_-81.2_/_0.91)]/10 flex items-center justify-center shrink-0">
+                    <Building size={20} className="text-[lab(36_30.43_-81.2_/_0.91)]" />
                   </div>
                   <span className="font-semibold text-slate-900 text-sm">Employer hiring</span>
                 </div>
@@ -73,8 +73,8 @@ export default function JobsSection() {
 
               <Link href="/candidate-support" className="block">
                 <div className="flex items-center gap-4 p-4 bg-white border border-slate-100 rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
-                  <div className="w-11 h-11 rounded-xl bg-[#a3b18a]/10 flex items-center justify-center shrink-0">
-                    <Users size={20} className="text-[#a3b18a]" />
+                  <div className="w-11 h-11 rounded-xl bg-[lab(36_30.43_-81.2_/_0.91)]/10 flex items-center justify-center shrink-0">
+                    <Users size={20} className="text-[lab(36_30.43_-81.2_/_0.91)]" />
                   </div>
                   <span className="font-semibold text-slate-900 text-sm">Candidate support</span>
                 </div>

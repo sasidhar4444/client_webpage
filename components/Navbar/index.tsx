@@ -33,13 +33,13 @@ export default function Navbar() {
           <div className="flex items-center h-full">
             {/* Logo */}
             <Link href="/" onClick={(e) => handleScroll(e, undefined, '/')} className="flex-shrink-0 flex items-center mr-6">
-              <div className="relative w-[170px] h-[48px] overflow-hidden flex items-center justify-center">
+              <div className="relative w-[220px] h-[48px] overflow-hidden flex items-center justify-center">
                 <Image 
                   src="/Rimaya_logo.png" 
                   alt="Rimaya Recruitment" 
                   width={240} 
                   height={80} 
-                  className="w-full h-full object-contain scale-[1.4]"
+                  className="w-full h-full object-contain scale-[1.35]"
                   priority 
                 />
               </div>

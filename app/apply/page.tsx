@@ -18,7 +18,7 @@ export default function ApplyPage() {
     const formData = new FormData(e.currentTarget);
     
     try {
-      await fetch("/", {
+      await fetch("/netlify-forms.html", {
         method: "POST",
         // Do not set Content-Type header when sending FormData with files; 
         // the browser will automatically set it to multipart/form-data with the correct boundary.

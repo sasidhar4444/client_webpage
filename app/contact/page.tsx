@@ -17,7 +17,7 @@ export default function ContactPage() {
     const formData = new FormData(e.currentTarget);
     
     try {
-      await fetch("/", {
+      await fetch("/netlify-forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         // @ts-ignore

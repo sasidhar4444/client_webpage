@@ -12,11 +12,11 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <div className="flex items-center mb-6">
               <Image 
-                src="/Rimaya_logo.jpeg" 
+                src="/Rimaya_logo.png" 
                 alt="Rimaya Recruitment" 
                 width={240} 
                 height={80} 
-                className="h-24 w-auto object-contain"
+                className="h-24 w-auto object-contain scale-110 origin-left"
               />
             </div>
 

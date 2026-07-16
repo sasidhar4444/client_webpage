@@ -33,7 +33,7 @@ export default function Navbar() {
           <div className="flex items-center h-full">
             {/* Logo */}
             <Link href="/" onClick={(e) => handleScroll(e, undefined, '/')} className="flex-shrink-0 flex items-center mr-6">
-              <div className="relative w-[220px] h-[48px] overflow-hidden flex items-center justify-center">
+              <div className="relative w-[195px] h-[48px] overflow-hidden flex items-center justify-center">
                 <Image 
                   src="/Rimaya_logo.png" 
                   alt="Rimaya Recruitment" 

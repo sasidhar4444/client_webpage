@@ -36,7 +36,7 @@ export default function Services() {
 
             <div className="relative z-10 p-8">
               <div className="absolute top-8 right-8">
-                <Badge variant="primary" className="bg-[#a3b18a] hover:bg-[#8f9d77] text-white border-transparent shadow-sm">
+                <Badge variant="primary">
                   Primary service
                 </Badge>
               </div>
